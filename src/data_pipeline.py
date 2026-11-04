@@ -79,6 +79,7 @@ def procesar_cohorte(anio_t: int) -> pd.DataFrame:
     # Deduplicar MRUN priorizando carrera de mayor duración formal
     cohorte_t.sort_values(by=["MRUN", "DUR_TOTAL_CARR"], ascending=[True, False], inplace=True)
     cohorte_t.drop_duplicates(subset=["MRUN"], keep="first", inplace=True)
+    cohorte_t.drop(columns=["NIVEL_GLOBAL", "ANIO_ING_CARR_ORI"], inplace=True)
     print(f"Estudiantes 1er año Pregrado ({anio_t}): {len(cohorte_t):,}")
 
     # 2. Cargar FUAS año t
